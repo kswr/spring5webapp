@@ -33,13 +33,18 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
         Publisher harper = new Publisher("Harper Collins", "NY, 1234");
         Publisher worx = new Publisher("Worx", "LA, 1234");
+        Publisher oReilly = new Publisher("O'Reilly", "NY, 1235");
 
         Author eric = new Author("Eric", "Evans");
         Author rod = new Author("Rod", "Johnson");
+        Author test = new Author("Test", "Test");
 
         Book ddd = new Book("Domain driven design", "1234", harper);
         Book noEJB = new Book("J2EE Development without EJB", "23444", worx);
+        Book hfJava = new Book("Head first Java", "1324", oReilly);
 
+        test.getBooks().add(hfJava);
+        hfJava.getAuthors().add(test);
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
         rod.getBooks().add(noEJB);
@@ -47,10 +52,13 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
         publisherRepository.save(harper);
         publisherRepository.save(worx);
+        publisherRepository.save(oReilly);
         authorRepository.save(eric);
-        bookRepository.save(ddd);
         authorRepository.save(rod);
+        authorRepository.save(test);
         bookRepository.save(noEJB);
+        bookRepository.save(ddd);
+        bookRepository.save(hfJava);
 
     }
 }

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
+import java.util.Objects;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -18,6 +19,9 @@ public class Publisher {
     private Long id;
     private String name;
     private String address;
+
+    public Publisher() {
+    }
 
     public Publisher(String name, String address) {
         this.name = name;
@@ -46,5 +50,18 @@ public class Publisher {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publisher publisher = (Publisher) o;
+        return id.equals(publisher.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
