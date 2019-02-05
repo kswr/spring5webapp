@@ -72,7 +72,7 @@ public class Author {
 
         Author author = (Author) o;
 
-        return id != null ? id.equals(author.id) : author.id == null;
+        return id.equals(author.id);
     }
 
     @Override
